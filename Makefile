@@ -1,0 +1,6 @@
+build-clean:
+	go build ./...
+	go clean ./...
+
+migrate-up:
+	@for f in `ls migrations/**/up.sql`; do export PGPASSWORD=postgrespassword; psql -p 25432 -h 127.0.0.1 -U postgres -f $$f; done
